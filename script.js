@@ -1,27 +1,27 @@
 const mongoose = require("mongoose");
 const User = require("./User");
 
-mongoose.connect(
-  "localhostdb"
-);
-
-
-//create a new user !! 
-// const user = new User({name:'YOUSSEF',age:25});
-// user.save().then(()=>console.log("User saved")
-// );
-
+mongoose.connect("localhostdb");
 
 run();
 
 const run = async () => {
-
-  // v1
-  //  const user = await User.create({{name:'YOUSSEF',age:25}})
-  //  user.name ="ahmed";
-  //  await User.save();
-  // v2
-  const user = new User({name:'YOUSSEF',age:25});
-  await user.save();
-  console.log(user)
-}
+  try {
+    //recommended 
+    // User.findById()
+    
+    const user = new User({
+      name: "YOUSSEF",
+      age: 25,
+      adress: {
+        street: "MARREKCH MASSIRA 1",
+        city: "marrakech",
+      },
+      email:"test@test.com"
+    });
+    await user.save();
+    console.log(user);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
